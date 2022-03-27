@@ -3,6 +3,15 @@ let cardBody = document.getElementById('cardBody')
 let alerts = document.getElementById('alerts')
 let gameMatrix = []
 
+function play () {
+   let audio = document.getElementById('audio')
+    audio.play()
+}
+
+function printMessage (alertType, message) {
+    alerts.innerHTML = `<div class="alert alert-${alertType}" role="alert">${message}</div>`
+}
+
 const player1 = {
     name : '',
     putSign(section) {
@@ -56,8 +65,8 @@ function checkWinner () {
 
 let iterationsSignatures = 0
 
-function addPlayer () {
-    alerts.innerHTML = ''
+function submitPlayer () {
+    printMessage('', '')
     if (input.value !== '') {
         if (!iterationsSignatures) {
             player1.name = input.value
@@ -69,7 +78,8 @@ function addPlayer () {
             whoseTurn(player1.name)
         }
     } else {
-        alerts.innerHTML = '<div class="alert alert-warning" role="alert">Enter a valid name!\n</div>'
+        printMessage('warning', 'Enter a valid name')
+        //alerts.innerHTML = '<div class="alert alert-warning" role="alert">Enter a valid name!\n</div>'
     }
 }
 
@@ -82,17 +92,19 @@ function sectionWasNotSelected (section) {
 }
 
 function putSignPlayer (section) {
-    alerts.innerHTML = ''
+    printMessage('', '')
     if (player1.name !== '' && player2.name !== '') {
         if (sectionWasNotSelected(section)) {
             if (iterationsSignatures % 2) {
                 whoseTurn(player2.name)
                 player1.putSign(section)
                 if (checkWinner()) {
-                    alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
+                    printMessage('success', `${checkWinner()} Won!`)
+                    //alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
                     createRestartButton()
                 } else if (iterationsSignatures >= 9) {
-                    alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
+                    printMessage('primary', 'Draw!')
+                    //alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
                     createRestartButton()
                 }
                 ++iterationsSignatures
@@ -100,19 +112,23 @@ function putSignPlayer (section) {
                 whoseTurn(player1.name)
                 player2.putSign(section)
                 if (checkWinner()) {
-                    alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
+                    printMessage('success', `${checkWinner()} Won!`)
+                    //alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
                     createRestartButton()
                 } else if (iterationsSignatures >= 9) {
-                    alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
+                    printMessage('primary', `Draw!`)
+                    //alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
                     createRestartButton()
                 }
                 ++iterationsSignatures
             }
         } else {
-            alerts.innerHTML = '<div class="alert alert-warning" role="alert">Is already selected, I suggest you select another one!\n</div>'
+            printMessage('warning', `Is already selected, I suggest you select another one!`)
+            //alerts.innerHTML = '<div class="alert alert-warning" role="alert">Is already selected, I suggest you select another one!\n</div>'
         }
     } else {
-        alerts.innerHTML = '<div class="alert alert-warning" role="alert">First enter you name or click on submit!\n</div>'
+        printMessage('warning', 'First enter you name or click on submit!')
+        //alerts.innerHTML = '<div class="alert alert-warning" role="alert">First enter you name or click on submit!\n</div>'
     }
 }
 
