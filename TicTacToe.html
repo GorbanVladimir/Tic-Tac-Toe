@@ -4,36 +4,7 @@
     <meta charset="UTF-8">
     <title>TicTacToe</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        table {
-            width: 20%;
-            margin-right: auto;
-            margin-left: auto;
-            background: aquamarine;
-            border: 1px solid darkgray;
-        }
-
-        td {
-            border: 1px solid darkgrey;
-            width: 5em;
-            height: 5em;
-        }
-
-        .content {
-            font-size: 150%;
-            color: black;
-        }
-
-        .card-header {
-            font-size: 150%;
-            color: blue;
-        }
-
-        input {
-            color: darkgrey;
-            font-family: "Lucida Console", "Courier New", serif;
-        }
-    </style>
+    <link href="TicTacToe.css" rel="stylesheet">
 </head>
 <body>
     <div class="card text-center">
@@ -43,25 +14,25 @@
         <div class="card-body" id="cardBody">
             <h5 class="card-title">Let&apos;s play!</h5>
             <p class="card-text">Enter first player name after this enter second player name</p>
-            <input type="text" id="playerName" onfocus="this.value='' " value="First player">
-            <button type="button" class="btn btn-success" id="submit" onclick="addPlayer()">Submit</button>
+            <label for="playerName"></label><input type="text" id="playerName" onfocus="this.value='' " value="First player">
+            <button type="button" class="btn btn-success" id="submit" onclick="submitPlayer()">Submit</button>
         </div>
-        <div class="card-footer text-muted" id="cardFooter">
+        <div class="card-footer text-muted" id="cardFooter" onclick="play()"><audio id="audio" src="Sounds/clickSound.wav"></audio>
             <table>
                 <tr>
-                    <td onclick="putSignPlayer(0)"><div class="content" id="0"></div></td>
-                    <td onclick="putSignPlayer(1)"><div class="content" id="1"></div></td>
-                    <td onclick="putSignPlayer(2)"><div class="content" id="2"></div></td>
+                    <td onclick="putSignPlayer(0)" class="content" id="0"></td>
+                    <td onclick="putSignPlayer(1)" class="content" id="1"></td>
+                    <td onclick="putSignPlayer(2)" class="content" id="2"></td>
                 </tr>
                 <tr>
-                    <td onclick="putSignPlayer(10)"><div class="content" id="10"></div></td>
-                    <td onclick="putSignPlayer(11)"><div class="content" id="11"></div></td>
-                    <td onclick="putSignPlayer(12)"><div class="content" id="12"></div></td>
+                    <td onclick="putSignPlayer(10)" class="content" id="10"></td>
+                    <td onclick="putSignPlayer(11)" class="content" id="11"></td>
+                    <td onclick="putSignPlayer(12)" class="content" id="12"></td>
                 </tr>
                 <tr>
-                    <td onclick="putSignPlayer(20)"><div class="content" id="20"></div></td>
-                    <td onclick="putSignPlayer(21)"><div class="content" id="21"></div></td>
-                    <td onclick="putSignPlayer(22)"><div class="content" id="22"></div></td>
+                    <td onclick="putSignPlayer(20)" class="content" id="20"></td>
+                    <td onclick="putSignPlayer(21)" class="content" id="21"></td>
+                    <td onclick="putSignPlayer(22)" class="content" id="22"></td>
                 </tr>
                 </table>
         </div>
