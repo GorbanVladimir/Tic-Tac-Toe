@@ -79,7 +79,6 @@ function submitPlayer () {
         }
     } else {
         printMessage('warning', 'Enter a valid name')
-        //alerts.innerHTML = '<div class="alert alert-warning" role="alert">Enter a valid name!\n</div>'
     }
 }
 
@@ -100,11 +99,9 @@ function putSignPlayer (section) {
                 player1.putSign(section)
                 if (checkWinner()) {
                     printMessage('success', `${checkWinner()} Won!`)
-                    //alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
                     createRestartButton()
                 } else if (iterationsSignatures >= 9) {
                     printMessage('primary', 'Draw!')
-                    //alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
                     createRestartButton()
                 }
                 ++iterationsSignatures
@@ -113,22 +110,18 @@ function putSignPlayer (section) {
                 player2.putSign(section)
                 if (checkWinner()) {
                     printMessage('success', `${checkWinner()} Won!`)
-                    //alerts.innerHTML = `<div class="alert alert-success" role="alert">${checkWinner()} Won!</div>`
                     createRestartButton()
                 } else if (iterationsSignatures >= 9) {
                     printMessage('primary', `Draw!`)
-                    //alerts.innerHTML = '<div class="alert alert-primary" role="alert">Draw!\n</div>'
                     createRestartButton()
                 }
                 ++iterationsSignatures
             }
         } else {
             printMessage('warning', `Is already selected, I suggest you select another one!`)
-            //alerts.innerHTML = '<div class="alert alert-warning" role="alert">Is already selected, I suggest you select another one!\n</div>'
         }
     } else {
         printMessage('warning', 'First enter you name or click on submit!')
-        //alerts.innerHTML = '<div class="alert alert-warning" role="alert">First enter you name or click on submit!\n</div>'
     }
 }
 
