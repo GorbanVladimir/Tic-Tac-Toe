@@ -126,8 +126,8 @@ function restartGame () {
 }
 
 input.addEventListener('keyup', function(event) {
-    event.preventDefault();
+    event.preventDefault()
     if (event.keyCode === 13) {
-        document.getElementById('submit').click();
+        document.getElementById('submit').click()
     }
-});
+})
