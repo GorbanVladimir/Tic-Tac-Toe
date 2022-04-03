@@ -7,38 +7,38 @@
     <link href="TicTacToe.css" rel="stylesheet">
 </head>
 <body>
-    <div class="card text-center">
-        <div class="card-header">
-            Tic-Tac-Toe Game
-        </div>
-        <div class="card-body" id="cardBody">
-            <h5 class="card-title">Let&apos;s play!</h5>
-            <p class="card-text">Enter first player name after this enter second player name</p>
-            <label for="playerName"></label><input type="text" id="playerName" onfocus="this.value='' " value="First player">
-            <button type="button" class="btn btn-success" id="submit" onclick="submitPlayer()">Submit</button>
-        </div>
-        <div class="card-footer text-muted" id="cardFooter" onclick="play()"><audio id="audio" src="Sounds/clickSound.wav"></audio>
-            <table>
-                <tr>
-                    <td onclick="putSignPlayer(0)" class="content" id="0"></td>
-                    <td onclick="putSignPlayer(1)" class="content" id="1"></td>
-                    <td onclick="putSignPlayer(2)" class="content" id="2"></td>
-                </tr>
-                <tr>
-                    <td onclick="putSignPlayer(10)" class="content" id="10"></td>
-                    <td onclick="putSignPlayer(11)" class="content" id="11"></td>
-                    <td onclick="putSignPlayer(12)" class="content" id="12"></td>
-                </tr>
-                <tr>
-                    <td onclick="putSignPlayer(20)" class="content" id="20"></td>
-                    <td onclick="putSignPlayer(21)" class="content" id="21"></td>
-                    <td onclick="putSignPlayer(22)" class="content" id="22"></td>
-                </tr>
-                </table>
-        </div>
-        <div class="card-footer text-muted" id="alerts">
-        </div>
+<div class="card text-center">
+    <div class="card-header">
+        Tic-Tac-Toe Game
     </div>
+    <div class="card-body" id="cardBody">
+        <h5 class="card-title">Let&apos;s play!</h5>
+        <p class="card-text">Enter first player name after this enter second player name</p>
+        <label for="playerName"></label><input type="text" id="playerName" onfocus="this.value='' " value="First player">
+        <button type="button" class="btn btn-success" id="submit" onclick="submitPlayer()">Submit</button>
+    </div>
+    <div class="card-footer text-muted" id="cardFooter" onclick="play()"><audio id="audio" src="Sounds/clickSound.wav"></audio>
+        <table>
+            <tr>
+                <td onclick="putSignPlayer(0)" class="content" id="0"></td>
+                <td onclick="putSignPlayer(1)" class="content" id="1"></td>
+                <td onclick="putSignPlayer(2)" class="content" id="2"></td>
+            </tr>
+            <tr>
+                <td onclick="putSignPlayer(10)" class="content" id="10"></td>
+                <td onclick="putSignPlayer(11)" class="content" id="11"></td>
+                <td onclick="putSignPlayer(12)" class="content" id="12"></td>
+            </tr>
+            <tr>
+                <td onclick="putSignPlayer(20)" class="content" id="20"></td>
+                <td onclick="putSignPlayer(21)" class="content" id="21"></td>
+                <td onclick="putSignPlayer(22)" class="content" id="22"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="card-footer text-muted" id="alerts">
+    </div>
+</div>
 <script src="TicTacToe.js"></script>
 </body>
 </html>

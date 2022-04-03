@@ -7,31 +7,25 @@ for (let i = 0; i < 3; ++i) {
     gameMatrix[i] = []
 }
 
-const player1 = {
-    name : '',
-    putSign(section) {
-        completeSectionAndGameMatrix(section, player1.name, 'X')
-    }
-}
-
-const player2 = {
-    name : '',
-    putSign(section) {
-        completeSectionAndGameMatrix(section, player2.name, '0')
+class person {
+    constructor(name, signature) {
+        this.name = name
+        this.signature = signature
     }
 }
 
 let iterationsSignatures = 0
+let player1, player2
 
-function submitPlayer () {
+function submitPlayer() {
     printMessage('', '')
     if (input.value !== '') {
         if (!iterationsSignatures) {
-            player1.name = input.value
+            player1 = new person(input.value, 'X')
             input.value = 'Second player'
             ++iterationsSignatures
         } else {
-            player2.name = input.value
+            player2 = new person(input.value, '0')
             input.value = ''
             whoseTurn(player1.name)
         }
@@ -40,42 +34,32 @@ function submitPlayer () {
     }
 }
 
-function putSignPlayer (section) {
+function putSignPlayer(section) {
     printMessage('', '')
-    if (player1.name !== '' && player2.name !== '') {
-        if (sectionWasNotSelected(section)) {
-            if (iterationsSignatures % 2) {
-                whoseTurn(player2.name)
-                player1.putSign(section)
-                if (checkWinner()) {
-                    printMessage('success', `${checkWinner()} Won!`)
-                    createRestartButton()
-                } else if (iterationsSignatures >= 9) {
-                    printMessage('primary', 'Draw!')
-                    createRestartButton()
-                }
-                ++iterationsSignatures
-            } else {
-                whoseTurn(player1.name)
-                player2.putSign(section)
-                if (checkWinner()) {
-                    printMessage('success', `${checkWinner()} Won!`)
-                    createRestartButton()
-                } else if (iterationsSignatures >= 9) {
-                    printMessage('primary', `Draw!`)
-                    createRestartButton()
-                }
-                ++iterationsSignatures
-            }
+    if (sectionWasNotSelected(section)) {
+        let curentPlayer
+        if (iterationsSignatures % 2) {
+            curentPlayer = player1
+            whoseTurn(player2.name)
         } else {
-            printMessage('warning', `Is already selected, I suggest you select another one!`)
+            curentPlayer = player2
+            whoseTurn(player1.name)
         }
+        completeSectionAndGameMatrix(section, curentPlayer.name, curentPlayer.signature)
+        if (checkWinner()) {
+            printMessage('success', `${checkWinner()} Won!`)
+            createRestartButton()
+        } else if (iterationsSignatures >= 9) {
+            printMessage('primary', 'Draw!')
+            createRestartButton()
+        }
+        ++iterationsSignatures
     } else {
-        printMessage('warning', 'First enter you name or click on submit!')
+        printMessage('warning', `Is already selected, I suggest you select another one!`)
     }
 }
 
-function checkWinner () {
+function checkWinner() {
     for (let i = 0; i < 3; ++i) {
         if (gameMatrix[i][0] === gameMatrix[i][1] && gameMatrix[i][1] === gameMatrix[i][2]) {
             return  gameMatrix[i][0]
@@ -93,35 +77,35 @@ function checkWinner () {
     return false
 }
 
-function completeSectionAndGameMatrix (section, name, signature) {
+function completeSectionAndGameMatrix(section, name, signature) {
     document.getElementById(`${section}`).innerHTML = signature
     const i = (section / 10).toFixed()
     const j = (section % 10).toFixed()
     gameMatrix[i][j] = name
 }
 
-function whoseTurn (name) {
+function whoseTurn(name) {
     cardBody.innerHTML = `<h5>${name} turn</h5>`
 }
 
-function sectionWasNotSelected (section) {
-    return gameMatrix[(section / 10).toFixed()][(section % 10).toFixed()] === undefined;
+function sectionWasNotSelected(section) {
+    return gameMatrix[(section / 10).toFixed()][(section % 10).toFixed()] === undefined
 }
 
-function play () {
+function play() {
     let audio = document.getElementById('audio')
     audio.play()
 }
 
-function printMessage (alertType, message) {
+function printMessage(alertType, message) {
     alerts.innerHTML = `<div class="alert alert-${alertType}" role="alert">${message}</div>`
 }
 
-function createRestartButton () {
+function createRestartButton() {
     cardBody.innerHTML = '<button type="button" class="btn btn-secondary" onclick="restartGame()">Restart</button>'
 }
 
-function restartGame () {
+function restartGame() {
     location.reload()
 }
 
